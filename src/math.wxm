@@ -1,0 +1,16 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 15.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+kill(all)$
+
+eccAnom: atan2(sqrt(1-ecc^2)*sin(trueAnom), ecc + cos(trueAnom))$
+meanAnom: eccAnom - ecc*sin(eccAnom)$
+
+r: y - meanAnom$
+
+J: diff(r, trueAnom);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
