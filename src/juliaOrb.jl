@@ -126,14 +126,14 @@ function orb2cart(ecc, inc, RAAN, AOP, trueAnom, SMA, mu)
     si = sin(i)
 
     PQW2IJK[1,1] = cO*co-sO*so*ci
-	PQW2IJK[1,2] = -cO*so-sO*co*ci
-	PQW2IJK[1,3] = sO*si
-	PQW2IJK[2,1] = sO*co+cO*so*ci
-	PQW2IJK[2,2] = -sO*so+cO*co*ci
-	PQW2IJK[2,3] = -cO*si
-	PQW2IJK[3,1] = so*si
-	PQW2IJK[3,2] = co*si
-	PQW2IJK[3,3] = ci
+    PQW2IJK[1,2] = -cO*so-sO*co*ci
+    PQW2IJK[1,3] = sO*si
+    PQW2IJK[2,1] = sO*co+cO*so*ci
+    PQW2IJK[2,2] = -sO*so+cO*co*ci
+    PQW2IJK[2,3] = -cO*si
+    PQW2IJK[3,1] = so*si
+    PQW2IJK[3,2] = co*si
+    PQW2IJK[3,3] = ci
 
     r = PQW2IJK*rPQW
     v = PQW2IJK*vPQW
