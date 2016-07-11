@@ -7,7 +7,7 @@ trueAnom = 1.5
 @printf("starting ecc: %0.2f\n", ecc)
 @printf("starting true anom: %0.2f rad\n", trueAnom)
 meanAnom = true2meanAnom(trueAnom, ecc)
-@printf("converting to mean anom: %f0.2 rad\n", meanAnom)
+@printf("converting to mean anom: %0.2f rad\n", meanAnom)
 trueAnom = mean2trueAnom(meanAnom, ecc)
 @printf("converting back to true anom: %0.2f rad\n\n", trueAnom)
 

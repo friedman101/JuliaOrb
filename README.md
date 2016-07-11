@@ -7,5 +7,5 @@ The test utility makes use of all the available functions within `juliaOrb`. To 
 ```
 git clone https://github.com/friedman101/juliaOrb.git
 cd juliaOrb/test
-julia testJuliaOrb.jl
+julia test.jl
 ```
