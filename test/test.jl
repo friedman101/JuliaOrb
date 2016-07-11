@@ -1,6 +1,6 @@
-include("../src/juliaOrb.jl")
+include("../src/JuliaOrb.jl")
 
-using juliaOrb
+using JuliaOrb
 
 ecc = 0.02
 trueAnom = 1.5

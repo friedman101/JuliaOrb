@@ -1,4 +1,4 @@
-module juliaOrb
+module JuliaOrb
 
 export true2meanAnom, mean2trueAnom, cart2orb, orb2cart, twoBodyProp
 export posix2julian, julian2posix, ecef2eciSimple
