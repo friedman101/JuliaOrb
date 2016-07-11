@@ -1,6 +1,11 @@
 module juliaOrb
 
 export true2meanAnom, mean2trueAnom, cart2orb, orb2cart, twoBodyProp
+export posix2julian, julian2posix, ecef2eciSimple
+export earthMu, eartMeanRadius
+
+earthMu = 3.986004418e14
+earthMeanRadius = 6371e3
 
 function true2eccAnom(trueAnom, ecc)
     eccAnom = atan2(sqrt(1-ecc^2)*sin(trueAnom), ecc + cos(trueAnom))
@@ -143,6 +148,44 @@ function orb2cart(ecc, inc, RAAN, AOP, trueAnom, SMA, mu)
 
     return pos, vel
 
+end
+
+function ecef2eciSimple(posixTime)
+    # http://aa.usno.navy.mil/publications/docs/Circular_179.pdf
+    jd = posix2julian(posixTime)
+    # UT1 days from J2000
+    DU = jd - 2451545.0
+    # earth rotation angle
+    theta = 0.7790572732640 + 1.00273781191135448*DU
+    # julian centuries from J2000
+    T = DU/36525
+    # Greenwich mean sidereal time in seconds
+    GMST = 86400*theta + (0.014506 + 4612.156534*T + 1.3915817*T^2 
+    -0.00000044*T^3 - 0.000029956*T^4 - 0.0000000368*T^5)/15
+    # Approximate GAST as GMST, ignore equation of equinoxes
+    GAST = GMST
+    GMSTrad = GMST*2*pi/86400 
+    R_e2i = R3(-GMSTrad)
+    return R_e2i
+end
+
+function posix2julian(posixTime)
+    #http://stackoverflow.com/questions/466321/convert-unix-timestamp-to-julian
+    jd = posixTime/86400.0 + 2440587.5
+    return jd
+end
+
+function julian2posix(jd)
+    #http://stackoverflow.com/questions/466321/convert-unix-timestamp-to-julian
+    posixTime = 86400.0*(jd - 2440587.5)
+    return posixTime
+end
+
+function R3(theta)
+    y = [cos(theta) sin(theta) 0;
+        -sin(theta) cos(theta) 0;
+        0 0 1]
+    return y
 end
 
 end

@@ -13,7 +13,7 @@ trueAnom = mean2trueAnom(meanAnom, ecc)
 
 pos = [-4845, -4014, 2609]*1e3
 vel = [1.26, -5.93, -4.83]*1e3
-mu = 3.986004418e14
+mu = earthMu
 @printf("starting pos: [%0.2f %0.2f %0.2f] m\n", pos[1], pos[2], pos[3])
 @printf("starting vel: [%0.2f %0.2f %0.2f] m/s\n", vel[1], vel[2], vel[3])
 ecc, inc, RAAN, AOP, trueAnom, SMA = cart2orb(pos, vel, mu)
@@ -30,4 +30,7 @@ pos, vel = twoBodyProp(pos, vel, mu, -delT)
 @printf("pos after -1000 second 2-body propagation: [%0.2f %0.2f %0.2f] m\n", pos[1], pos[2], pos[3])
 @printf("vel after -1000 second 2-body propagation: [%0.2f %0.2f %0.2f] m/s\n\n", vel[1], vel[2], vel[3])
 
-
+posixTime = 1468202088
+R_e2i = ecef2eciSimple(posixTime)
+@printf("rotation from ECEF to ECI at posix time %i is:\n", posixTime)
+println(R_e2i)
