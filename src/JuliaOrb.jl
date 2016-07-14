@@ -20,6 +20,11 @@ end
 
 function meanAnomResidual(trueAnom, meanAnom, ecc)
     residual = meanAnom - true2meanAnom(trueAnom, ecc)
+    if residual > pi
+        residual = residual - 2*pi
+    elseif residual < -pi
+        residual = residual + 2*pi
+    end
     return residual
 end
 

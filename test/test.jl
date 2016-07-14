@@ -1,6 +1,7 @@
 include("../src/JuliaOrb.jl")
 
 using JuliaOrb
+using PyPlot
 
 ecc = 0.02
 trueAnom = 1.5
@@ -34,3 +35,26 @@ posixTime = 1468202088
 R_e2i = ecef2eciSimple(posixTime)
 @printf("rotation from ECEF to ECI at posix time %i is:\n", posixTime)
 println(R_e2i)
+
+pos0 = [-4845, -4014, 2609]*1e3
+vel0 = [1.26, -5.93, -4.83]*1e3
+t = 0:1:3600
+pos = zeros(length(t), 3)
+vel = zeros(length(t), 3)
+for i = 1:length(t)
+    myPos, myVel = twoBodyProp(pos0, vel0, mu, t[i])
+    pos[i,:] = myPos
+    vel[i,:] = myVel
+end
+subplot(2,1,1)
+plot(t, pos/1e3)
+title("ECI position")
+ylabel("position (km)");
+subplot(2,1,2)
+plot(t, vel/1e3)
+title("ECI velocity")
+ylabel("velocity (km/s)");
+xlabel("time (s)")
+
+
+plt[:show]()
