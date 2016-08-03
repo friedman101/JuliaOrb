@@ -2,7 +2,7 @@ module JuliaOrb
 
 export true2meanAnom, mean2trueAnom, cart2orb, orb2cart, twoBodyProp
 export posix2julian, julian2posix, ecef2eciSimple
-export earthMu, eartMeanRadius
+export earthMu, earthMeanRadius
 
 earthMu = 3.986004418e14
 earthMeanRadius = 6371e3
